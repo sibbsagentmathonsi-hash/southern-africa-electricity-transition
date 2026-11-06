@@ -37,11 +37,12 @@ The pipeline fetches country/indicator API requests concurrently with retries. O
 
 | Output | Contents |
 |---|---|
-| `outputs/southern_africa_electricity_transition.xlsx` | Overview dashboard, annual data, country summary, correlation results, API source/methodology sheet, Excel formula, and chart |
-| `outputs/ANALYSIS_SUMMARY.md` | Latest observations, derived count estimates, indicator definitions, results, and caveats |
-| `outputs/annual_energy_access.csv` | Combined annual observations and derived measures |
+| `outputs/southern_africa_electricity_transition.xlsx` | Overview dashboard, annual data, country summary, correlation results, missing-values register, API source/methodology sheet, Excel formula, and chart |
+| `outputs/ANALYSIS_SUMMARY.md` | Latest observations, missing-data explanation, derived count estimates, indicator definitions, results, and caveats |
+| `outputs/annual_energy_access.csv` | Combined annual observations and derived measures; unavailable values are explicitly marked `Not reported` |
 | `outputs/country_summary.csv` | Latest available values and changes by country, with years shown for each indicator |
 | `outputs/correlations.csv` | Pairwise descriptive correlations and paired-year counts |
+| `outputs/missing_values.csv` | Country-year-field register with a reason for every missing source or derived value |
 | `outputs/source_metadata.json` | Indicator IDs, API URLs, retrieval date, update dates, and year coverage |
 | `outputs/charts/*.png` | Electricity access, renewable consumption, estimated population without access, and correlation heatmap |
 
@@ -54,7 +55,7 @@ The pipeline fetches country/indicator API requests concurrently with retries. O
 - **Access change:** annual change in access percentage points, not a percent growth rate.
 - **Correlations:** Pearson association for available paired years. These are exploratory descriptive statistics, not causal evidence or forecasts.
 
-The indicators have different release schedules. In the 2026 API snapshot, electricity access is available through 2024, renewable-energy consumption through 2021, and population through 2025. The script and workbook preserve the year of each observation; latest indicator values should not be assumed to share the same year.
+The indicators have different release schedules. In the 2026 API snapshot, electricity access is available through 2024, renewable-energy consumption through 2021, and population through 2025. The annual CSV explicitly marks unavailable values as `Not reported`, the workbook uses descriptive missing-value labels, and the missing-values register lists country, year, field, and reason. The Excel access-change formula is in its own final column and does not overwrite the estimated-population data. Missing values are never silently imputed or converted to zero. To restore numeric missing values in pandas, load with `na_values=["Not reported"]`.
 
 ## Source and attribution
 

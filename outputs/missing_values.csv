@@ -1,0 +1,46 @@
+﻿country_code,country,year,field,indicator_id,status,reason
+BWA,Botswana,2000,electricity_access_change_pp,Derived calculation,Not calculable,No prior year is included in the selected analysis period.
+BWA,Botswana,2022,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+BWA,Botswana,2023,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+BWA,Botswana,2024,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+BWA,Botswana,2025,electricity_access_change_pp,Derived calculation,Not calculable,The current or prior year's electricity-access observation is not reported.
+BWA,Botswana,2025,electricity_access_index_2000_100,Derived calculation,Not calculable,The electricity-access observation is not reported.
+BWA,Botswana,2025,electricity_access_pct,EG.ELC.ACCS.ZS,Not reported,No observation is published beyond 2024 in the retrieved World Bank API snapshot (updated 2026-10-08).
+BWA,Botswana,2025,estimated_people_without_electricity,Derived calculation,Not calculable,Cannot calculate because the electricity-access estimate is not reported.
+BWA,Botswana,2025,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+MOZ,Mozambique,2000,electricity_access_change_pp,Derived calculation,Not calculable,No prior year is included in the selected analysis period.
+MOZ,Mozambique,2022,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+MOZ,Mozambique,2023,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+MOZ,Mozambique,2024,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+MOZ,Mozambique,2025,electricity_access_change_pp,Derived calculation,Not calculable,The current or prior year's electricity-access observation is not reported.
+MOZ,Mozambique,2025,electricity_access_index_2000_100,Derived calculation,Not calculable,The electricity-access observation is not reported.
+MOZ,Mozambique,2025,electricity_access_pct,EG.ELC.ACCS.ZS,Not reported,No observation is published beyond 2024 in the retrieved World Bank API snapshot (updated 2026-10-08).
+MOZ,Mozambique,2025,estimated_people_without_electricity,Derived calculation,Not calculable,Cannot calculate because the electricity-access estimate is not reported.
+MOZ,Mozambique,2025,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+NAM,Namibia,2000,electricity_access_change_pp,Derived calculation,Not calculable,No prior year is included in the selected analysis period.
+NAM,Namibia,2022,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+NAM,Namibia,2023,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+NAM,Namibia,2024,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+NAM,Namibia,2025,electricity_access_change_pp,Derived calculation,Not calculable,The current or prior year's electricity-access observation is not reported.
+NAM,Namibia,2025,electricity_access_index_2000_100,Derived calculation,Not calculable,The electricity-access observation is not reported.
+NAM,Namibia,2025,electricity_access_pct,EG.ELC.ACCS.ZS,Not reported,No observation is published beyond 2024 in the retrieved World Bank API snapshot (updated 2026-10-08).
+NAM,Namibia,2025,estimated_people_without_electricity,Derived calculation,Not calculable,Cannot calculate because the electricity-access estimate is not reported.
+NAM,Namibia,2025,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+ZAF,South Africa,2000,electricity_access_change_pp,Derived calculation,Not calculable,No prior year is included in the selected analysis period.
+ZAF,South Africa,2022,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+ZAF,South Africa,2023,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+ZAF,South Africa,2024,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+ZAF,South Africa,2025,electricity_access_change_pp,Derived calculation,Not calculable,The current or prior year's electricity-access observation is not reported.
+ZAF,South Africa,2025,electricity_access_index_2000_100,Derived calculation,Not calculable,The electricity-access observation is not reported.
+ZAF,South Africa,2025,electricity_access_pct,EG.ELC.ACCS.ZS,Not reported,No observation is published beyond 2024 in the retrieved World Bank API snapshot (updated 2026-10-08).
+ZAF,South Africa,2025,estimated_people_without_electricity,Derived calculation,Not calculable,Cannot calculate because the electricity-access estimate is not reported.
+ZAF,South Africa,2025,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+ZMB,Zambia,2000,electricity_access_change_pp,Derived calculation,Not calculable,No prior year is included in the selected analysis period.
+ZMB,Zambia,2022,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+ZMB,Zambia,2023,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+ZMB,Zambia,2024,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).
+ZMB,Zambia,2025,electricity_access_change_pp,Derived calculation,Not calculable,The current or prior year's electricity-access observation is not reported.
+ZMB,Zambia,2025,electricity_access_index_2000_100,Derived calculation,Not calculable,The electricity-access observation is not reported.
+ZMB,Zambia,2025,electricity_access_pct,EG.ELC.ACCS.ZS,Not reported,No observation is published beyond 2024 in the retrieved World Bank API snapshot (updated 2026-10-08).
+ZMB,Zambia,2025,estimated_people_without_electricity,Derived calculation,Not calculable,Cannot calculate because the electricity-access estimate is not reported.
+ZMB,Zambia,2025,renewable_energy_consumption_pct,EG.FEC.RNEW.ZS,Not reported,No observation is published beyond 2021 in the retrieved World Bank API snapshot (updated 2026-10-08).

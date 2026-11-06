@@ -16,6 +16,10 @@ World Bank annual estimates for 2000–2025 across South Africa, Botswana, Namib
 
 Estimated people without access is calculated as population × (100 − electricity access percentage) / 100, using the latest available values of each input. It is an approximate population-level estimate, not a household enumeration; input years may differ. The accompanying data includes each component and year so this estimate can be checked.
 
+## Missing values
+
+There are **45 missing source observations or unavailable derived values** in this analysis. No values are invented, imputed, or replaced with zero. The annual CSV labels missing numeric values `Not reported`; the workbook labels them in **Annual Data** and lists each country, year, field, and reason in **Missing Values**. In the retrieved API snapshot, electricity access is unavailable in 2025 for all five countries, renewable energy is unavailable in 2022–2025 for all five, and 2000 year-over-year access changes have no prior year in the selected period. Access-change and population-without-access calculations for 2025 are also unavailable because the 2025 access estimate is not reported.
+
 ## Renewable energy consumption
 
 | country | renewable_energy_latest_year | renewable_energy_latest_value |
@@ -46,6 +50,6 @@ Source: [World Bank Indicators API](https://datahelpdesk.worldbank.org/knowledge
 - **Renewable energy (`EG.FEC.RNEW.ZS`):** renewables as a percentage of total final energy consumption, not electricity-generation mix.
 - **People without access:** derived from population and access estimates. Differences in estimate vintages and uncertainty can affect the count.
 - **Access change:** year-over-year change in percentage points, not percent growth.
-- Missing indicator values remain missing, never replaced with zero. Comparisons and correlations use only available paired observations.
+- Missing indicator values are explicitly labelled and listed in the missing-values register; they are never imputed or replaced with zero. Comparisons and correlations use only available paired observations.
 - Correlations are descriptive, unadjusted annual associations between electricity access and renewable energy consumption. They do not address confounding, statistical significance, timing lags, measurement uncertainty, common time trends, or causation.
 - The project retrieves the API when rerun; response URLs, update dates, and nonmissing coverage are stored in `outputs/source_metadata.json`.

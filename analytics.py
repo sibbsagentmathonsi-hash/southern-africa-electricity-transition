@@ -258,6 +258,101 @@ def paired_correlations(data: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def build_missing_values(
+    data: pd.DataFrame, sources: list[dict], start_year: int
+) -> pd.DataFrame:
+    source_by_country_indicator = {
+        (source["country_code"], source["indicator_id"]): source for source in sources
+    }
+    source_indicators = {
+        "electricity_access_pct": "EG.ELC.ACCS.ZS",
+        "renewable_energy_consumption_pct": "EG.FEC.RNEW.ZS",
+        "population": "SP.POP.TOTL",
+    }
+    rows = []
+
+    def add(country_code: str, year: int, field: str, indicator: str, reason: str) -> None:
+        rows.append(
+            {
+                "country_code": country_code,
+                "country": COUNTRIES[country_code],
+                "year": year,
+                "field": field,
+                "indicator_id": indicator,
+                "status": "Not reported" if indicator in INDICATORS else "Not calculable",
+                "reason": reason,
+            }
+        )
+
+    for row in data.itertuples(index=False):
+        country_code = row.country_code
+        year = int(row.year)
+        values = row._asdict()
+        for field, indicator in source_indicators.items():
+            if not pd.isna(values[field]):
+                continue
+            source = source_by_country_indicator[(country_code, indicator)]
+            first = source["first_nonmissing_year"]
+            last = source["last_nonmissing_year"]
+            if last is not None and year > last:
+                reason = (
+                    f"No observation is published beyond {last} in the retrieved "
+                    f"World Bank API snapshot (updated {source['api_last_updated']})."
+                )
+            elif first is not None and year < first:
+                reason = f"The first reported observation in this API snapshot is {first}."
+            else:
+                reason = "The World Bank API returned no value for this country-year."
+            add(country_code, year, field, indicator, reason)
+
+        access_missing = pd.isna(values["electricity_access_pct"])
+        population_missing = pd.isna(values["population"])
+        if pd.isna(values["electricity_access_change_pp"]):
+            reason = (
+                "No prior year is included in the selected analysis period."
+                if year == start_year
+                else "The current or prior year's electricity-access observation is not reported."
+            )
+            add(
+                country_code,
+                year,
+                "electricity_access_change_pp",
+                "Derived calculation",
+                reason,
+            )
+        if pd.isna(values["estimated_people_without_electricity"]):
+            unavailable = []
+            if access_missing:
+                unavailable.append("electricity-access estimate")
+            if population_missing:
+                unavailable.append("population estimate")
+            add(
+                country_code,
+                year,
+                "estimated_people_without_electricity",
+                "Derived calculation",
+                "Cannot calculate because the "
+                + " and ".join(unavailable)
+                + " is not reported.",
+            )
+        if pd.isna(values["electricity_access_index_2000_100"]):
+            reason = (
+                "The electricity-access observation is not reported."
+                if access_missing
+                else "A non-zero baseline-year access observation is not available."
+            )
+            add(
+                country_code,
+                year,
+                "electricity_access_index_2000_100",
+                "Derived calculation",
+                reason,
+            )
+    return pd.DataFrame(rows).sort_values(
+        ["country_code", "year", "field"]
+    ).reset_index(drop=True)
+
+
 def style_sheet(sheet, table_name: str | None = None) -> None:
     sheet.sheet_view.showGridLines = False
     sheet.freeze_panes = "A2"
@@ -289,7 +384,7 @@ def write_table(workbook: Workbook, name: str, frame: pd.DataFrame, table_name: 
     for row in frame.itertuples(index=False, name=None):
         sheet.append(
             [
-                None
+                "Not available"
                 if pd.isna(value)
                 else value.item()
                 if isinstance(value, np.generic)
@@ -315,6 +410,7 @@ def create_workbook(
     summary: pd.DataFrame,
     correlations: pd.DataFrame,
     sources: list[dict],
+    missing_values: pd.DataFrame,
 ) -> None:
     workbook = Workbook()
     overview = workbook.active
@@ -379,6 +475,7 @@ def create_workbook(
         "Estimated people without access = population × (100 − electricity access %) / 100. This is a derived estimate, not a direct household headcount.",
         "Renewable energy consumption is a share of total final energy consumption; it is not the share of electricity generated from renewables.",
         "Electricity access data currently run through 2024; renewable energy shares currently run through 2021. Compare the year displayed for each indicator.",
+        "Unreported values are labelled. The Missing Values sheet lists each unavailable country-year and its reason; missing is not zero and is not imputed.",
         "Correlations are descriptive and not causal. Check missingness and indicator definitions before interpretation.",
     ]
     for row, note in enumerate(notes, start=9):
@@ -391,6 +488,34 @@ def create_workbook(
     write_table(workbook, "Country Summary", summary, "CountrySummary")
     correlations_sheet = write_table(workbook, "Correlations", correlations, "Correlations")
     write_table(workbook, "Methodology", pd.DataFrame(sources), "SourceMetadata")
+    write_table(workbook, "Missing Values", missing_values, "MissingValues")
+
+    source_missing_labels = {
+        "electricity_access_pct": "Not reported by World Bank",
+        "renewable_energy_consumption_pct": "Not reported by World Bank",
+        "population": "Not reported by World Bank",
+    }
+    first_year = int(data["year"].min())
+    for row_number, values in enumerate(data.itertuples(index=False, name=None), start=2):
+        record = dict(zip(data.columns, values))
+        for column_number, column in enumerate(data.columns, start=1):
+            if not pd.isna(record[column]):
+                continue
+            if column in source_missing_labels:
+                label = source_missing_labels[column]
+            elif column == "electricity_access_change_pp":
+                label = (
+                    "N/A: no prior year"
+                    if int(record["year"]) == first_year
+                    else "Not calculable: source value unavailable"
+                )
+            elif column == "estimated_people_without_electricity":
+                label = "Not calculable: access or population unavailable"
+            elif column == "electricity_access_index_2000_100":
+                label = "Not calculable: access or baseline unavailable"
+            else:
+                label = "Not available"
+            annual_sheet.cell(row_number, column_number, label)
 
     chart_data = workbook.create_sheet("Chart Data")
     chart_data.append(["Year", *[COUNTRIES[code] for code in COUNTRY_ORDER]])
@@ -412,18 +537,27 @@ def create_workbook(
     style_sheet(chart_data)
     chart_data.sheet_state = "hidden"
 
-    annual_sheet.cell(1, 8, "Excel access change (pp)")
+    formula_column = annual_sheet.max_column + 1
+    annual_sheet.cell(1, formula_column, "Excel access change (pp)")
     for cell in annual_sheet[1]:
         cell.font = Font(color="FFFFFF", bold=True)
         cell.fill = PatternFill("solid", fgColor="17324D")
     for row in range(2, annual_sheet.max_row + 1):
-        if (
+        same_country_previous = (
             row > 2
             and annual_sheet.cell(row, 1).value == annual_sheet.cell(row - 1, 1).value
-        ):
-            annual_sheet.cell(row, 8, f'=IFERROR(D{row}-D{row - 1},"")')
-        annual_sheet.cell(row, 8).number_format = "0.00"
-    annual_sheet.tables["AnnualData"].ref = f"A1:H{annual_sheet.max_row}"
+        )
+        if same_country_previous:
+            annual_sheet.cell(
+                row,
+                formula_column,
+                f'=IF(AND(ISNUMBER(C{row}),ISNUMBER(C{row - 1})),C{row}-C{row - 1},"Not calculable: source value unavailable")',
+            )
+        else:
+            annual_sheet.cell(row, formula_column, "N/A: no prior year")
+        annual_sheet.cell(row, formula_column).number_format = "0.00"
+    formula_letter = annual_sheet.cell(1, formula_column).column_letter
+    annual_sheet.tables["AnnualData"].ref = f"A1:{formula_letter}{annual_sheet.max_row}"
 
     overview_chart = LineChart()
     overview_chart.title = "Electricity access (% of population)"
@@ -572,6 +706,7 @@ def write_report(
     summary: pd.DataFrame,
     correlations: pd.DataFrame,
     sources: list[dict],
+    missing_values: pd.DataFrame,
 ) -> None:
     latest_access = summary[
         [
@@ -625,6 +760,10 @@ World Bank annual estimates for 2000–2025 across South Africa, Botswana, Namib
 
 Estimated people without access is calculated as population × (100 − electricity access percentage) / 100, using the latest available values of each input. It is an approximate population-level estimate, not a household enumeration; input years may differ. The accompanying data includes each component and year so this estimate can be checked.
 
+## Missing values
+
+There are **{len(missing_values)} missing source observations or unavailable derived values** in this analysis. No values are invented, imputed, or replaced with zero. The annual CSV labels missing numeric values `Not reported`; the workbook labels them in **Annual Data** and lists each country, year, field, and reason in **Missing Values**. In the retrieved API snapshot, electricity access is unavailable in 2025 for all five countries, renewable energy is unavailable in 2022–2025 for all five, and 2000 year-over-year access changes have no prior year in the selected period. Access-change and population-without-access calculations for 2025 are also unavailable because the 2025 access estimate is not reported.
+
 ## Renewable energy consumption
 
 {markdown_table(latest_renewable)}
@@ -647,7 +786,7 @@ Source: [World Bank Indicators API](https://datahelpdesk.worldbank.org/knowledge
 - **Renewable energy (`EG.FEC.RNEW.ZS`):** renewables as a percentage of total final energy consumption, not electricity-generation mix.
 - **People without access:** derived from population and access estimates. Differences in estimate vintages and uncertainty can affect the count.
 - **Access change:** year-over-year change in percentage points, not percent growth.
-- Missing indicator values remain missing, never replaced with zero. Comparisons and correlations use only available paired observations.
+- Missing indicator values are explicitly labelled and listed in the missing-values register; they are never imputed or replaced with zero. Comparisons and correlations use only available paired observations.
 - Correlations are descriptive, unadjusted annual associations between electricity access and renewable energy consumption. They do not address confounding, statistical significance, timing lags, measurement uncertainty, common time trends, or causation.
 - The project retrieves the API when rerun; response URLs, update dates, and nonmissing coverage are stored in `outputs/source_metadata.json`.
 """
@@ -661,9 +800,20 @@ def run_analysis(start_year: int = FIRST_YEAR, end_year: int = LAST_YEAR) -> pd.
     summary = country_summary(data)
     correlations = paired_correlations(data)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    data.to_csv(OUTPUT_DIR / "annual_energy_access.csv", index=False, encoding="utf-8-sig")
+    data.to_csv(
+        OUTPUT_DIR / "annual_energy_access.csv",
+        index=False,
+        encoding="utf-8-sig",
+        na_rep="Not reported",
+    )
     summary.to_csv(OUTPUT_DIR / "country_summary.csv", index=False, encoding="utf-8-sig")
     correlations.to_csv(OUTPUT_DIR / "correlations.csv", index=False, encoding="utf-8-sig")
+    missing_values = build_missing_values(data, sources, start_year)
+    missing_values.to_csv(
+        OUTPUT_DIR / "missing_values.csv",
+        index=False,
+        encoding="utf-8-sig",
+    )
     metadata = {
         "retrieved_at_utc": pd.Timestamp.now(tz="UTC").isoformat(),
         "requested_years": [start_year, end_year],
@@ -683,9 +833,15 @@ def run_analysis(start_year: int = FIRST_YEAR, end_year: int = LAST_YEAR) -> pd.
         summary,
         correlations,
         sources,
+        missing_values,
     )
     write_report(
-        OUTPUT_DIR / "ANALYSIS_SUMMARY.md", data, summary, correlations, sources
+        OUTPUT_DIR / "ANALYSIS_SUMMARY.md",
+        data,
+        summary,
+        correlations,
+        sources,
+        missing_values,
     )
     return data
 
