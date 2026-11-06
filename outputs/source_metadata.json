@@ -1,0 +1,199 @@
+{
+  "retrieved_at_utc": "2026-11-06T17:40:45.613739+00:00",
+  "requested_years": [
+    2000,
+    2025
+  ],
+  "countries": {
+    "ZAF": "South Africa",
+    "BWA": "Botswana",
+    "NAM": "Namibia",
+    "ZMB": "Zambia",
+    "MOZ": "Mozambique"
+  },
+  "indicators": [
+    {
+      "country_code": "ZAF",
+      "country": "South Africa",
+      "indicator_id": "EG.ELC.ACCS.ZS",
+      "indicator_name": "Access to electricity (% of population)",
+      "api_url": "https://api.worldbank.org/v2/country/ZAF/indicator/EG.ELC.ACCS.ZS?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 25,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2024
+    },
+    {
+      "country_code": "BWA",
+      "country": "Botswana",
+      "indicator_id": "EG.ELC.ACCS.ZS",
+      "indicator_name": "Access to electricity (% of population)",
+      "api_url": "https://api.worldbank.org/v2/country/BWA/indicator/EG.ELC.ACCS.ZS?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 25,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2024
+    },
+    {
+      "country_code": "NAM",
+      "country": "Namibia",
+      "indicator_id": "EG.ELC.ACCS.ZS",
+      "indicator_name": "Access to electricity (% of population)",
+      "api_url": "https://api.worldbank.org/v2/country/NAM/indicator/EG.ELC.ACCS.ZS?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 25,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2024
+    },
+    {
+      "country_code": "ZMB",
+      "country": "Zambia",
+      "indicator_id": "EG.ELC.ACCS.ZS",
+      "indicator_name": "Access to electricity (% of population)",
+      "api_url": "https://api.worldbank.org/v2/country/ZMB/indicator/EG.ELC.ACCS.ZS?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 25,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2024
+    },
+    {
+      "country_code": "MOZ",
+      "country": "Mozambique",
+      "indicator_id": "EG.ELC.ACCS.ZS",
+      "indicator_name": "Access to electricity (% of population)",
+      "api_url": "https://api.worldbank.org/v2/country/MOZ/indicator/EG.ELC.ACCS.ZS?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 25,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2024
+    },
+    {
+      "country_code": "ZAF",
+      "country": "South Africa",
+      "indicator_id": "EG.FEC.RNEW.ZS",
+      "indicator_name": "Renewable energy consumption (% of total final energy consumption)",
+      "api_url": "https://api.worldbank.org/v2/country/ZAF/indicator/EG.FEC.RNEW.ZS?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 22,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2021
+    },
+    {
+      "country_code": "BWA",
+      "country": "Botswana",
+      "indicator_id": "EG.FEC.RNEW.ZS",
+      "indicator_name": "Renewable energy consumption (% of total final energy consumption)",
+      "api_url": "https://api.worldbank.org/v2/country/BWA/indicator/EG.FEC.RNEW.ZS?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 22,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2021
+    },
+    {
+      "country_code": "NAM",
+      "country": "Namibia",
+      "indicator_id": "EG.FEC.RNEW.ZS",
+      "indicator_name": "Renewable energy consumption (% of total final energy consumption)",
+      "api_url": "https://api.worldbank.org/v2/country/NAM/indicator/EG.FEC.RNEW.ZS?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 22,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2021
+    },
+    {
+      "country_code": "ZMB",
+      "country": "Zambia",
+      "indicator_id": "EG.FEC.RNEW.ZS",
+      "indicator_name": "Renewable energy consumption (% of total final energy consumption)",
+      "api_url": "https://api.worldbank.org/v2/country/ZMB/indicator/EG.FEC.RNEW.ZS?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 22,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2021
+    },
+    {
+      "country_code": "MOZ",
+      "country": "Mozambique",
+      "indicator_id": "EG.FEC.RNEW.ZS",
+      "indicator_name": "Renewable energy consumption (% of total final energy consumption)",
+      "api_url": "https://api.worldbank.org/v2/country/MOZ/indicator/EG.FEC.RNEW.ZS?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 22,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2021
+    },
+    {
+      "country_code": "ZAF",
+      "country": "South Africa",
+      "indicator_id": "SP.POP.TOTL",
+      "indicator_name": "Population, total",
+      "api_url": "https://api.worldbank.org/v2/country/ZAF/indicator/SP.POP.TOTL?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 26,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2025
+    },
+    {
+      "country_code": "BWA",
+      "country": "Botswana",
+      "indicator_id": "SP.POP.TOTL",
+      "indicator_name": "Population, total",
+      "api_url": "https://api.worldbank.org/v2/country/BWA/indicator/SP.POP.TOTL?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 26,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2025
+    },
+    {
+      "country_code": "NAM",
+      "country": "Namibia",
+      "indicator_id": "SP.POP.TOTL",
+      "indicator_name": "Population, total",
+      "api_url": "https://api.worldbank.org/v2/country/NAM/indicator/SP.POP.TOTL?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 26,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2025
+    },
+    {
+      "country_code": "ZMB",
+      "country": "Zambia",
+      "indicator_id": "SP.POP.TOTL",
+      "indicator_name": "Population, total",
+      "api_url": "https://api.worldbank.org/v2/country/ZMB/indicator/SP.POP.TOTL?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 26,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2025
+    },
+    {
+      "country_code": "MOZ",
+      "country": "Mozambique",
+      "indicator_id": "SP.POP.TOTL",
+      "indicator_name": "Population, total",
+      "api_url": "https://api.worldbank.org/v2/country/MOZ/indicator/SP.POP.TOTL?format=json&date=2000%3A2025&per_page=100",
+      "api_last_updated": "2026-10-08",
+      "rows_returned": 26,
+      "nonmissing_observations": 26,
+      "first_nonmissing_year": 2000,
+      "last_nonmissing_year": 2025
+    }
+  ],
+  "api_documentation": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889386",
+  "license_reference": "https://datacatalog.worldbank.org/public-licenses#cc-by",
+  "data_rows": 130
+}

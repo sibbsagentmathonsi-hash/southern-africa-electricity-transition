@@ -1,0 +1,6 @@
+﻿country_code,country,electricity_access_latest_year,electricity_access_latest_value,electricity_access_first_year,electricity_access_first_value,electricity_access_change,renewable_energy_latest_year,renewable_energy_latest_value,renewable_energy_first_year,renewable_energy_first_value,renewable_energy_change,people_without_electricity_latest_year,people_without_electricity_latest_value,people_without_electricity_first_year,people_without_electricity_first_value,people_without_electricity_change,electricity_access_observations,renewable_energy_observations
+ZAF,South Africa,2024,90.2,2000,72.4,17.799999999999997,2021,9.7,2000,16.2,-6.5,2024,6272704.325999998,2000,13016082.443999996,-6743378.117999999,25,22
+BWA,Botswana,2024,80.2,2000,26.5,53.7,2021,27.4,2000,38.5,-11.100000000000001,2024,499185.52199999994,2000,1232875.77,-733690.2480000001,25,22
+NAM,Namibia,2024,59.3,2000,36.5,22.799999999999997,2021,30.0,2000,34.8,-4.799999999999997,2024,1233263.317,2000,1154840.845,78422.47200000007,25,22
+ZMB,Zambia,2024,53.6,2000,16.7,36.900000000000006,2021,83.0,2000,90.0,-7.0,2024,9890139.583999999,2000,8344686.623,1545452.9609999992,25,22
+MOZ,Mozambique,2024,36.9,2000,6.1,30.799999999999997,2021,76.9,2000,93.6,-16.69999999999999,2024,21852644.346,2000,17023744.167,4828900.179000001,25,22
